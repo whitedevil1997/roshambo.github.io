@@ -1,0 +1,165 @@
+<html>
+<head>
+<style>
+div{
+	
+}
+button.rock{
+	background-image : url(rock.jpg);
+	background-position : center;
+	background-size : 120px;
+	background-repeat : no-repeat;
+	background-color : black;
+	height : 150px;
+	width : 150px;
+	border-radius : 80px;
+	}
+button.paper{
+	background-image : url(paper.jpg);
+	background-position : center;
+	background-size : 120px;
+	background-repeat : no-repeat;
+	background-color : black;
+	height : 150px;
+	width : 150px;
+	border-radius : 80px;
+	}	
+button.sissors{
+	background-image : url(sissors.jpg);
+	background-position : center;
+	background-size : 120px;
+	background-repeat : no-repeat;
+	background-color : black;
+	height : 150px;
+	width : 150px;
+	border-radius : 80px;
+	}	
+body{
+	background-image : url(rosambo.jpg);
+	background-attachment : fixed;
+	background-repeat : no-repeat;
+	background-size : cover;
+}
+font.player{
+	background-color : black;
+	border-radius : 10px;
+	color : red;
+	font-family : magneto;
+	font-size : 25px;
+	float : left;
+	}
+font.cpu{
+	background-color : black;
+	border-radius : 10px;
+	color : red;
+	font-family : magneto;
+	font-size : 25px;
+	float : right;
+	}	
+heading{
+	background-color : teal;
+	border-radius : 50px;
+	margin-left : 35%;
+	font-size : 70px;
+	color : red;
+	font-family : chiller;
+}	
+button.reload{
+	background-color : black;
+	color : white;
+	border-radius : 15px;
+	height : 50px;
+	}
+</style>
+</head>
+<body>
+<heading>R O S H A M B O</heading>
+<center><input type="text" id="pts" placeholder="Enter MAX points..." style="height : 50px; border-radius : 20px;"><button type="submit" class="reload" onclick="pointsfun()">START</button>
+<button type="submit" class="reload" onclick="location.reload()">RELOAD</button></center>
+<center>
+	<button type="submit" class="rock" id="rock" onclick="rockfun()"></button>
+	<button type="submit" class="paper" id="paper" onclick="paperfun()"></button>
+	<button type="submit" class="sissors" id="sissors" onclick="sissorsfun()"></button>
+</center>
+<font class="player">PLAYER :<div id="player_pts"></div><img id="player_image"></img></font>
+<font class="cpu"> CPU : <div id="cpu_pts"></div><img id="cpu_image"></img></font>
+<script>
+var player_points=0;
+var cpu_points=0;
+var win;
+function pointsfun(){
+	win=document.getElementById("pts").value;
+}
+function rockfun(){
+	var comp=(Math.ceil(Math.random()*10))%3;
+	document.getElementById("player_image").src="rock.jpg";	
+	if(comp==0){	
+		document.getElementById("cpu_image").src="rock.jpg";				
+	}
+	else if(comp==1){
+		document.getElementById("cpu_image").src="paper.jpg";				
+		cpu_points=cpu_points+1;
+		document.getElementById('cpu_pts').innerHTML=cpu_points;
+	}
+	else if(comp==2){
+		document.getElementById("cpu_image").src="sissors.jpg";				
+		player_points=player_points+1;
+		document.getElementById('player_pts').innerHTML=player_points;
+	}
+	if(player_points==win){
+		window.alert("You WIN!!!...Restart to play new game");
+	}
+	else if(cpu_points==win){
+		window.alert("CPU WINS...Restart to play new game");
+	}
+}
+function paperfun(){
+	document.getElementById("player_image").src="paper.jpg";	
+	var comp=(Math.ceil(Math.random()*10))%3;
+	if(comp==0){	
+		document.getElementById("cpu_image").src="rock.jpg";
+		player_points++;
+		document.getElementById('player_pts').innerHTML=player_points;
+	}
+	else if(comp==1){
+		document.getElementById("cpu_image").src="paper.jpg";					
+		}
+	else if(comp==2){
+		document.getElementById("cpu_image").src="sissors.jpg";	
+		cpu_points++;
+		document.getElementById('cpu_pts').innerHTML=cpu_points;
+		}
+	if(player_points==win){
+		window.alert("You WIN!!!...Restart to play new game");
+	}
+	else if(cpu_points==win){
+		window.alert("CPU WINS...Restart to play new game");
+	}	
+}
+function sissorsfun(){
+	document.getElementById("player_image").src="sissors.jpg";	
+	var comp=(Math.ceil(Math.random()*10))%3;
+	if(comp==0){	
+		document.getElementById("cpu_image").src="rock.jpg";				
+		cpu_points++;
+		document.getElementById('cpu_pts').innerHTML=cpu_points;
+	}
+	else if(comp==1){
+		document.getElementById("cpu_image").src="paper.jpg";	
+		player_points++;
+		document.getElementById('player_pts').innerHTML=player_points;
+		}
+	else if(comp==2){
+		document.getElementById("cpu_image").src="sissors.jpg";					
+		}
+	if(player_points==win){
+		window.alert("You WIN!!!...Restart to play new game");
+	}
+	else if(cpu_points==win){
+		window.alert("CPU WINS...Restart to play new game");
+	}	
+}
+
+</script>
+</body>
+</html>
